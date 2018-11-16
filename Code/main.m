@@ -11,3 +11,4 @@ title('Lena');
 subplot(122);
 imshow(wm);
 title('Copyright');
+
