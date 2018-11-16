@@ -26,22 +26,17 @@ close;
 [h_watermark, w_watermark] = size(watermark);
 [h_HL, w_HL] = size(HL);
 W1 = double(watermark)/2;
-W2 = double(watermark) - W1;
-W1 = padarray(W1, [h_HL - h_watermark, w_HL - w_watermark], ...
-    'post');
-W2 = padarray(W2, [h_HL - h_watermark, w_HL - w_watermark], ...
-    'post');   
+W2 = W - W1;
+W1 = padarray(W1, [h_watermark - h_HL, w_watermark - w_HL], ...
+    'post
+    
 % modify sigular values
 alpha = 0.1;
-[U1_W, S1_W, V1_W] = svd(S1 + alpha*W1);
-[U2_W, S2_W, V2_W] = svd(S2 + alpha*W2);
-% obtain modified DWT coefficients
-LH_star = U1*S1_W*V1.';
-HL_star = U2*S2_W*V2.';
-% obtain watermarked image
-cover_wm = ihaart2(LL, HL_star, LH_star, HH);
-figure;
-imshow(mat2gray(cover_wm));
-
-%% Watermark extraction
+S1_W = S1;
+S1_W(1:w_watermark, 1:h_watermark) = ...
+    S1(1:w_watermark, 1:h_watermark) + alpha*W1;
+S2_W = S2;
+S2_W(1:w_watermark, 1:h_watermark) = ...
+    S2_W(1:w_watermark, 1:h_watermark) + alpha*W2;
+[U1_W, S1_W, V1_W] = svd
 
