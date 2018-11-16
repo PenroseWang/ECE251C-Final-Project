@@ -1,6 +1,4 @@
 %% Recover Watermark
-M = size(lena,1);
-
 [LL_wm, LH_wm, HL_wm, HH_wm] = haart2(lena_wm,1);
 [~,S1_wm,~] = svd(LH_wm);
 [~,S2_wm,~] = svd(HL_wm);
