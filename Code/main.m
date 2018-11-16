@@ -11,6 +11,7 @@ title('Lena');
 subplot(122);
 imshow(watermark);
 title('Copyright');
+<<<<<<< HEAD
 close;
 
 %% Watermark embedding
@@ -44,4 +45,6 @@ figure;
 imshow(mat2gray(cover_wm));
 
 %% Watermark extraction
+=======
+>>>>>>> f006bf46e1469aee2c5c7943df06ab07063af002
 
