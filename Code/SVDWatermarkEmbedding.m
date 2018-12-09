@@ -1,15 +1,19 @@
 function [watermarked_img, img_data] = SVDWatermarkEmbedding(image, watermark, varargin)
-    %% Watermark embedding
+%%SVDWatermarkEmbedding
+
+    % change variable to double
+    image = double(image);
+    watermark = double(watermark);
     % 1 level Haar DWT
-    [LL, HL, LH, HH] = haart2(double(image), 1);
+    [LL, HL, LH, HH] = haart2(image, 1);
     % apply SVD to HL and LH
     [U1, S1, V1] = svd(LH);
     [U2, S2, V2] = svd(HL);
     % divide watermark and padding
     [h_watermark, w_watermark] = size(watermark);
     [h_HL, w_HL] = size(HL);
-    W1 = double(watermark)/2;
-    W2 = double(watermark) - W1;
+    W1 = watermark/2;
+    W2 = watermark - W1;
     W1 = padarray(W1, [h_HL - h_watermark, w_HL - w_watermark], ...
         'post');
     W2 = padarray(W2, [h_HL - h_watermark, w_HL - w_watermark], ...
@@ -22,7 +26,7 @@ function [watermarked_img, img_data] = SVDWatermarkEmbedding(image, watermark, v
     LH_star = U1*S1_W*V1.';
     HL_star = U2*S2_W*V2.';
     % obtain watermarked image
-    watermarked_img = ihaart2(LL, HL_star, LH_star, HH);
+    watermarked_img = uint8(ihaart2(LL, HL_star, LH_star, HH));
     
     img_data.alpha = alpha;
     img_data.U1_W = U1_W;
