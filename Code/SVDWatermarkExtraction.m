@@ -1,5 +1,7 @@
 function [extracted_watermark] = SVDWatermarkExtraction(watermarked_img, img_data)
-%%SVDWAtermarkExtraction
+%%SVDWatermarkExtraction
+%%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
+%%Transform and Singular Value Decomposition"
 
     % change variables to doulbe
     watermarked_img = double(watermarked_img);

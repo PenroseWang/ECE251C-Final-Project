@@ -1,5 +1,7 @@
 function [watermarked_img, img_data] = SVDWatermarkEmbedding(image, watermark, varargin)
 %%SVDWatermarkEmbedding
+%%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
+%%Transform and Singular Value Decomposition"
 
     % change variable to double
     image = double(image);
