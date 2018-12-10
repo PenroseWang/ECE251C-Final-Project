@@ -5,8 +5,8 @@ function [watermarked_img, img_data] = DWT_SVDWatermarkEmbedding(image, ...
 %%Transform and Singular Value Decomposition"
 
 % normalize variables to double
-image = double(image);
-watermark = double(watermark);
+image = im2double(image);
+watermark = im2double(watermark);
 % 1st level Haar DWT
 [LL, HL, LH, HH] = haart2(image, 1);
 % apply SVD to HL and LH
@@ -27,7 +27,7 @@ alpha = cell2mat(varargin{1});
 LH_star = U1*S1_W*V1.';
 HL_star = U2*S2_W*V2.';
 % obtain watermarked image
-watermarked_img = uint8(ihaart2(LL, HL_star, LH_star, HH));
+watermarked_img = uint8(255*mat2gray(ihaart2(LL, HL_star, LH_star, HH)));
 
 img_data.alpha = alpha;
 img_data.U1_W = U1_W;
@@ -36,4 +36,5 @@ img_data.U2_W = U2_W;
 img_data.V2_W = V2_W;
 img_data.S1 = S1;
 img_data.S2 = S2;
+img_data.wm_size = size(watermark);
 end

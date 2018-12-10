@@ -26,4 +26,5 @@ for k = 1:N - 1
     seq(k + 1) = bits(n);
 end
 seq = circshift(seq, delay);
+seq(seq == 0) = -1;
 end

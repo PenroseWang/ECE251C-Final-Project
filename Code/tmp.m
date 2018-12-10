@@ -1,9 +1,9 @@
 clc; clear variables;
 %% m sequence (LFSR)
-% pn0 = PNGenerator([4, 3], 0);
-% pn1 = PNGenerator([4, 1], 0);
-pn0 = [1, 0, 1, 1, 0, 0, 1, 0, 1, 0];
-pn1 = [1, 1, 1, 0, 0, 0, 0, 1, 1, 0];
+pn0 = PNGenerator([3, 2], 0);
+pn1 = PNGenerator([3, 1], 0);
+% pn0 = [1, 0, 1, 1, 0, 0, 1, 0, 1, 0];
+% pn1 = [1, 1, 1, 0, 0, 0, 0, 1, 1, 0];
 figure(1);
 subplot(131);
 stem(cxcorr(pn0, pn0));

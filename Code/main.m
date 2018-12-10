@@ -11,15 +11,15 @@ watermark = imread('Copyright.png');
     EvaluateWatermark(@DWT_SVDWatermarkEmbedding, ...
     @DWT_SVDWatermarkExtraction, img, watermark, 0.1);
 
-showImages(img, wm_img, rec_wm);
+showImages(img, watermark, wm_img, rec_wm);
 
 
 %% Method2: DWT-DCT
 [wm_img, rec_wm, test_results_DWTDCT] = ...
     EvaluateWatermark(@DWT_DCTWatermarkEmbedding, ...
-    @DWT_DCTWatermarkExtraction, img, watermark, 0.2);
+    @DWT_DCTWatermarkExtraction, img, watermark, 0.1);
 
-showImages(img, wm_img, rec_wm);
+showImages(img, watermark, wm_img, rec_wm);
 
 
 
