@@ -1,7 +1,7 @@
 function [watermarked_img, img_data] = DWT_DCTWatermarkEmbedding(image, ...
     watermark, varargin)
 %%DWT-DCTWatermarkEmbedding
-%%Reference: "Combined DWT-DCT Digital Image Watermarking"
+%Reference: "Combined DWT-DCT Digital Image Watermarking"
 
 
 % 0. normalize variables to double
@@ -26,8 +26,6 @@ wm_vec = watermark(:);
 % 6. generate Gold code as PN sequence
 PN0 = PNGenerator([3, 1], 0);
 PN1 = PNGenerator([3, 2], 0);
-% PN0 = xor(circshift(pn0, 1), circshift(pn1, 3));
-% PN1 = xor(circshift(pn0, 2), circshift(pn1, 4));
 % 7. embed PN sequences
 alpha = cell2mat(varargin{1});
 Blocks_pn = Blocks_dct;

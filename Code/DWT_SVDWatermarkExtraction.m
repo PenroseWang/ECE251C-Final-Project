@@ -1,8 +1,8 @@
 function [extracted_watermark] = ...
     DWT_SVDWatermarkExtraction(watermarked_img, img_data)
 %%DWT-SVDWatermarkExtraction
-%%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
-%%Transform and Singular Value Decomposition"
+%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
+%Transform and Singular Value Decomposition"
 
 % normalize variables to doulbe
 watermarked_img = im2double(watermarked_img);

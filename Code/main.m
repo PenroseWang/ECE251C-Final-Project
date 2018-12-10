@@ -14,7 +14,15 @@ watermark = imread('Copyright.png');
 showImages(img, watermark, wm_img, rec_wm);
 
 
-%% Method2: DWT-DCT
+%% Method2: RDWT-SVD
+[wm_img, rec_wm, test_results_RDWTSVD] = ...
+    EvaluateWatermark(@RDWT_SVDWatermarkEmbedding, ...
+    @RDWT_SVDWatermarkExtraction, img, watermark, 0.1);
+
+showImages(img, watermark, wm_img, rec_wm);
+
+
+%% Method3: DWT-DCT
 [wm_img, rec_wm, test_results_DWTDCT] = ...
     EvaluateWatermark(@DWT_DCTWatermarkEmbedding, ...
     @DWT_DCTWatermarkExtraction, img, watermark, 0.1);
@@ -22,7 +30,12 @@ showImages(img, watermark, wm_img, rec_wm);
 showImages(img, watermark, wm_img, rec_wm);
 
 
+%% Method4: joint DWT-DCT
+[wm_img, rec_wm, test_results_jDWTDCT] = ...
+    EvaluateWatermark(@jDWT_DCTWatermarkEmbedding, ...
+    @jDWT_DCTWatermarkExtraction, img, watermark, 1);
 
+showImages(img, watermark, wm_img, rec_wm);
 
 
 

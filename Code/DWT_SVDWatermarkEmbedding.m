@@ -1,8 +1,8 @@
 function [watermarked_img, img_data] = DWT_SVDWatermarkEmbedding(image, ...
     watermark, varargin)
 %%DWT-SVDWatermarkEmbedding
-%%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
-%%Transform and Singular Value Decomposition"
+%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
+%Transform and Singular Value Decomposition"
 
 % normalize variables to double
 image = im2double(image);
@@ -13,12 +13,12 @@ watermark = im2double(watermark);
 [U1, S1, V1] = svd(LH);
 [U2, S2, V2] = svd(HL);
 % divide watermark and padding
-[h_watermark, w_watermark] = size(watermark);
+[h_wm, w_wm] = size(watermark);
 [h_HL, w_HL] = size(HL);
 W1 = watermark/2;
 W2 = watermark - W1;
-W1 = padarray(W1, [h_HL - h_watermark, w_HL - w_watermark], 'post');
-W2 = padarray(W2, [h_HL - h_watermark, w_HL - w_watermark], 'post');   
+W1 = padarray(W1, [h_HL - h_wm, w_HL - w_wm], 'post');
+W2 = padarray(W2, [h_HL - h_wm, w_HL - w_wm], 'post');   
 % modify sigular values
 alpha = cell2mat(varargin{1});
 [U1_W, S1_W, V1_W] = svd(S1 + alpha*W1);

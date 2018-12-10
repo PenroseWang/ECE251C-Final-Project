@@ -19,7 +19,6 @@ subplot(236);
 imshow(extracted_watermark);
 title('Extracted Watermark');
 set(gca, 'FontSize', 22, 'FontName', 'Times New Roman');
-
 set(gcf, 'Position', [300 300 900 400]);
 
 end
