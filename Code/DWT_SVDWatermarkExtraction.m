@@ -4,7 +4,7 @@ function [extracted_watermark] = ...
 %%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
 %%Transform and Singular Value Decomposition"
 
-% change variables to doulbe
+% normalize variables to doulbe
 watermarked_img = double(watermarked_img);
 [~, HL_wm, LH_wm, ~] = haart2(watermarked_img, 1);
 [~, S1_wm, ~] = svd(HL_wm);

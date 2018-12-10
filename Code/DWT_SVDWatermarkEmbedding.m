@@ -4,7 +4,7 @@ function [watermarked_img, img_data] = DWT_SVDWatermarkEmbedding(image, ...
 %%Reference: "Digital Image Watermarking Using Discrete Wavelet ...
 %%Transform and Singular Value Decomposition"
 
-% change variable to double
+% normalize variables to double
 image = double(image);
 watermark = double(watermark);
 % 1st level Haar DWT
