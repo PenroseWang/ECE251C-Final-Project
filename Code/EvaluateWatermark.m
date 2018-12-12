@@ -22,7 +22,6 @@ test_results.psnr_watermark = psnr(double(extracted_watermark), ...
 test_results.corr_watermark = corr2(double(extracted_watermark), ...
     watermark);
 
-test_idx = 1;
 
 %% Evaluate Cropping Attack
 crop_percentages = 0:10:90;
@@ -44,12 +43,12 @@ function attacked_img = crop_image(watermarked_img, crop_percent)
         start_crop(2):end_crop(2));
 end
 
-if (test_enable(test_idx))
+test_id = 1;
+if (test_enable(test_id))
 test_results.cropping = EvaluateAttack(test_results.cropping, ...
     watermarked_img, extraction_func, @crop_image, watermark, ...
     img_data, crop_percentages);
 end
-test_idx = test_idx + 1;
 
 %% Evaluate Rotation Attack
 angles = 0:45:360;
@@ -61,12 +60,12 @@ function attacked_img = rotate_img(watermarked_img, ang)
     attacked_img = imrotate(watermarked_img, ang, 'crop');
 end
 
-if (test_enable(test_idx))
+test_id = 2;
+if (test_enable(test_id))
 test_results.rotation = EvaluateAttack(test_results.rotation, ...
     watermarked_img, extraction_func, @rotate_img, watermark, ...
     img_data, angles);
 end
-test_idx = test_idx + 1;
 
 %% Evaluate Gaussian Noise Attack
 noise_var = 0.001:.001:.01;
@@ -78,12 +77,13 @@ function attacked_img = gaussian_noise_func(watermarked_img, var)
     attacked_img = uint8(imnoise(watermarked_img, 'gaussian', 0, var));
 end
 
-if (test_enable(test_idx))
+test_id = 3;
+if (test_enable(test_id))
 test_results.gaussian_noise = EvaluateAttack(test_results.gaussian_noise, ...
     watermarked_img, extraction_func, @gaussian_noise_func, watermark, ...
     img_data, noise_var);
 end
-test_idx = test_idx + 1;
+
 
 %% Evaluate Gaussian Blur Attack
 sigma = 0.1:.1:1;
@@ -95,12 +95,13 @@ function attacked_img = gaussian_blur(watermarked_img, variance)
     attacked_img = uint8(imgaussfilt(double(watermarked_img), variance));
 end
 
-if (test_enable(test_idx))
+test_id = 4;
+if (test_enable(test_id))
 test_results.gaussian_blur = EvaluateAttack(test_results.gaussian_blur, ...
     watermarked_img, extraction_func, @gaussian_blur, watermark, ...
     img_data, sigma);
 end
-test_idx = test_idx + 1;
+
 
 %% Evaluate JPEG Compression Attack
 quality = 100:-10:10;
@@ -115,12 +116,13 @@ function attacked_img = jpeg_compression(watermarked_img, qual)
     delete wm_img_jpeg_test.jpg
 end
 
-if (test_enable(test_idx))
+test_id = 5;
+if (test_enable(test_id))
 test_results.jpeg_compression = EvaluateAttack(...
     test_results.jpeg_compression, watermarked_img, extraction_func, ...
     @jpeg_compression, watermark, img_data, quality);
 end
-test_idx = test_idx + 1;
+
 
 %% Evaluate Median Filtering
 med_neighborhood = 1:1:10;
@@ -132,12 +134,12 @@ function attacked_img = median_filtering(watermarked_img, nhood)
    attacked_img = medfilt2(watermarked_img, [nhood nhood]);
 end
 
-if (test_enable(test_idx))
+test_id = 6;
+if (test_enable(test_id))
 test_results.median_filt = EvaluateAttack(...
     test_results.median_filt, watermarked_img, extraction_func, ...
     @median_filtering, watermark, img_data, med_neighborhood);
 end
-test_idx = test_idx + 1;
 
 
 %% Evaluate Constrast Adjustment
@@ -150,12 +152,13 @@ function attacked_img = adjust_contrast(watermarked_img, limit)
     attacked_img = imadjust(watermarked_img, [0+limit 1-limit],[]);
 end
 
-if (test_enable(test_idx))
+test_id = 7;
+if (test_enable(test_id))
 test_results.contrast_adj = EvaluateAttack(...
     test_results.contrast_adj, watermarked_img, extraction_func, ...
     @adjust_contrast, watermark, img_data, contrast_limits);
 end
-test_idx = test_idx + 1;
+
 
 %% Evaluate Gamma Correction
 gamma_values = 2:-.2:.1;
@@ -167,11 +170,12 @@ function attacked_img = gamma_correction(watermarked_img, gamma)
     attacked_img = imadjust(watermarked_img, [],[], gamma);
 end
 
-if (test_enable(test_idx))
+test_id = 8;
+if (test_enable(test_id))
 test_results.gamma_correction = EvaluateAttack(...
     test_results.gamma_correction, watermarked_img, extraction_func, ...
     @gamma_correction, watermark, img_data, gamma_values);
 end
-test_idx = test_idx + 1;
+
 
 end
