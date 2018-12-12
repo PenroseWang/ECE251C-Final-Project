@@ -1,0 +1,25 @@
+function [wm_rec] = DWT_FRFTWatermarkExtraction(...
+    watermarked_img, img_data)
+    
+    image = im2double(watermarked_img);
+    
+    [~, HL1, ~, ~] = haart2(image,1);
+    [~, HL2, LH2, ~] = haart2(HL1,1);
+    
+    F_HL2 = frft2d(HL2, [img_data.a1, img_data.a2]);
+    F_HL2_vec = F_HL2(:);
+    F_LH2 = frft2d(LH2, [img_data.a1, img_data.a2]);
+    F_LH2_vec = F_LH2(:);
+    
+    wm_rec = ones(img_data.wm_size);
+    
+    seq1 = img_data.seq1;
+    seq2 = img_data.seq2;
+    
+    for i = 1:prod(img_data.wm_size)
+       corr0 = ccorr(F_HL2_vec, seq1);
+       corr1 = corr(F_LH2_vec, seq2);
+       wm_rec(i) = mean([corr0, corr1]);
+    end
+    imagesc(wm_rec);
+end
