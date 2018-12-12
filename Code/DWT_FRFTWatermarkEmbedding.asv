@@ -1,0 +1,29 @@
+function [watermarked_img, img_data] = DWT_FRFTWatermarkEmbedding(image, ...
+    watermark, varargin)
+    image = im2double(image);
+    watermark = mat2gray(watermark)';
+    watermark = watermark(:);
+    % Haar DWT
+    [LL1, HL1, LH1, HH1] = haart2(image,1);
+    
+    %2nd-level Haar DWT
+    [~, HL2, LH2, ~] = haart2(HL1,1);
+    
+    a1 = varargin{1};
+    a2 = varargin{2};
+    k = varargin{3};
+    
+    F_HL2 = frft2d(HL2, [a1, a2]);
+    F_LH2 = frft2d(LH2, [a1, a2]);
+    
+    pn1_gen = commsrc.pn('NumBitsOut', numel(HL2));
+    pn1_seq = pn1_gen.generate();
+    pn2_gen = commsrc.pn('NumBitsOut', numel(LH2));
+    pn2_seq = pn2_gen.generate();
+    
+    for i = watermark
+       if (i == 0)
+           F_HL2 = F_HL2 + reshape(k*pn1_seq, size(F_HL2, 1), size(F_HL
+       end
+    end
+end
