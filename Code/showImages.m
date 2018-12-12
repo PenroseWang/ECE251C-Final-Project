@@ -2,12 +2,12 @@ function showImages(img, watermark, watermarked_img, extracted_watermark)
 %%showImages
 %Display image results
 
-figure;
-subplot(131)
+
+subplot(131);
 imshow(img);
 title('Host Image');
 set(gca, 'FontSize', 22, 'FontName', 'Times New Roman');
-subplot(132)
+subplot(132);
 imshow(watermarked_img);
 title('Watermarked Image');
 set(gca, 'FontSize', 22, 'FontName', 'Times New Roman');
