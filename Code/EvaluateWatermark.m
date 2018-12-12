@@ -1,5 +1,5 @@
 function [watermarked_img, extracted_watermark, test_results] = ...
-    EvaluateWatermark(algorithm_name, embedding_func, extraction_func, ...,
+    EvaluateWatermark(algorithm_name, embedding_func, extraction_func, ...
     img, watermark, test_disable, varargin)
 
 %% Evaluate Embedding and Extraction Quality

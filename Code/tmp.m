@@ -13,8 +13,8 @@ subplot(133);
 stem(cxcorr(double(pn0), double(pn1)));
 
 %% Gold Code
-PN0 = xor(circshift(pn0, 0), circshift(pn1, 8));
-PN1 = xor(circshift(pn0, 0), circshift(pn1, 6));
+PN0 = circshift(pn0, 0).*circshift(pn1, 5);
+PN1 = circshift(pn0, 0).*circshift(pn1, 6);
 figure(2);
 subplot(131);
 stem(cxcorr(PN0, PN0));

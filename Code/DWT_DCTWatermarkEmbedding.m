@@ -24,8 +24,10 @@ end
 % 5. vectorize watermark
 wm_vec = watermark(:);
 % 6. generate Gold code as PN sequence
-PN0 = PNGenerator([3, 1], 0);
-PN1 = PNGenerator([3, 2], 0);
+pn0 = PNGenerator([3, 1], 0);
+pn1 = PNGenerator([3, 2], 0);
+PN0 = circshift(pn0, 0).*circshift(pn1, 5);
+PN1 = circshift(pn0, 0).*circshift(pn1, 6);
 % 7. embed PN sequences
 alpha = cell2mat(varargin{1});
 Blocks_pn = Blocks_dct;
