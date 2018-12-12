@@ -19,6 +19,7 @@ function [watermarked_img, img_data] = DWT_FRFTWatermarkEmbedding(image, ...
     F_LH2 = frft2d(LH2, [img_data.a1, img_data.a2]);
     F_LH2_vec = F_LH2(:);
     
+    
     img_data.pn1_gen = commsrc.pn('NumBitsOut', numel(HL2));
     img_data.pn2_gen = commsrc.pn('NumBitsOut', numel(LH2));
     
