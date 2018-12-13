@@ -28,6 +28,8 @@ pn0 = PNGenerator([3, 1], 0);
 pn1 = PNGenerator([3, 2], 0);
 PN0 = circshift(pn0, 0).*circshift(pn1, 5);
 PN1 = circshift(pn0, 0).*circshift(pn1, 6);
+% PN0 = [1 1 1 1 1 1 1];
+% PN1 = [1 -1 1 -1 1 -1 1];
 % 7. embed PN sequences
 alpha = cell2mat(varargin{1});
 Blocks_pn = Blocks_dct;

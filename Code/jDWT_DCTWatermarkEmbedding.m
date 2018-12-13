@@ -46,6 +46,8 @@ pn0 = PNGenerator([3, 1], 0);
 pn1 = PNGenerator([3, 2], 0);
 PN0 = circshift(pn0, 0).*circshift(pn1, 5);
 PN1 = circshift(pn0, 0).*circshift(pn1, 6);
+PN0 = [1 1 1 1 1 1 1];
+PN1 = [1 -1 1 -1 1 -1 1];
 % 9. embed PN sequences
 alpha = cell2mat(varargin{1});
 num_b = numel(b_HL13_dct);
@@ -62,7 +64,6 @@ for idx = 1:length(wm_vec)
     PN = izigzag(PN, 4, 4);
     idx_B = floor((idx - 1)/num_b) + 1;
     idx_b = idx - (idx_B - 1)*num_b;
-    
     Blocks_pn{idx_B}{idx_b} = Blocks{idx_B}{idx_b} + alpha*PN;
 end
 
