@@ -12,10 +12,11 @@ watermarked_img = im2double(watermarked_img);
 [~, S3_wm, ~] = svd(LH_wm);
 [~, S4_wm, ~] = svd(HH_wm);
 
-D1 = img_data.U1_W(1:size(S1_wm,1))*S1_wm*(img_data.V1_W(1:size(S1_wm,1)))';
-D2 = img_data.U2_W(1:size(S2_wm,1))*S2_wm*(img_data.V2_W(1:size(S2_wm,1)))';
-D3 = img_data.U3_W(1:size(S3_wm,1))*S3_wm*(img_data.V3_W(1:size(S3_wm,1)))';
-D4 = img_data.U4_W(1:size(S4_wm,1))*S4_wm*(img_data.V4_W(1:size(S4_wm,1)))';
+D1 = img_data.U1_W(1:end,1:size(S1_wm,1))*S1_wm*img_data.V1_W(1:end,1:size(S1_wm,1)).';
+D2 = img_data.U2_W(1:end,1:size(S2_wm,1))*S2_wm*img_data.V2_W(1:end,1:size(S2_wm,1)).';
+D3 = img_data.U3_W(1:end,1:size(S3_wm,1))*S3_wm*img_data.V3_W(1:end,1:size(S3_wm,1)).';
+D4 = img_data.U4_W(1:end,1:size(S4_wm,1))*S4_wm*img_data.V4_W(1:end,1:size(S4_wm,1)).';
+
 
 W1_rec = (D1 - img_data.S1)/img_data.alpha;
 W2_rec = (D2 - img_data.S2)/img_data.alpha;
