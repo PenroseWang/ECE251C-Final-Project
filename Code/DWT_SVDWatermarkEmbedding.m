@@ -27,6 +27,7 @@ alpha = cell2mat(varargin{1});
 LH_star = U1*S1_W*V1.';
 HL_star = U2*S2_W*V2.';
 % obtain watermarked image
+%watermarked_img = ihaart2(LL, HL_star, LH_star, HH);
 watermarked_img = uint8(255*mat2gray(ihaart2(LL, HL_star, LH_star, HH)));
 
 img_data.alpha = alpha;

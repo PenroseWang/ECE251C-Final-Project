@@ -18,6 +18,7 @@ W2_rec = (D2 - img_data.S2)/img_data.alpha;
 
 W_rec = W1_rec + W2_rec;
 wm_size = img_data.wm_size;
+%extracted_watermark = W_rec(1:wm_size(1), 1:wm_size(2));
 % extracted_watermark = uint8(255*mat2gray(W_rec(1:wm_size(1), 1:wm_size(2))));
 extracted_watermark = uint8(255*floor(mat2gray(W_rec(1:wm_size(1), ...
     1:wm_size(2)), [0, 1])/.5));
