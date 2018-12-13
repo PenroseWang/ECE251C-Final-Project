@@ -1,0 +1,22 @@
+function GeneratePlots(results)
+    dir = './plots';
+    mkdir(dir);
+    for algorithm = results
+        dir_alg = [dir '/' algorithm.algorithm_name];
+        mkdir(dir_alg);
+        imwrite(algorithm.watermarked_img, 'watermarked_img.jpg');
+        imwrite(algorithm.wm_rec, 'wm_rec.jpg');
+        names = fieldnames(algorithm);
+        for name = names(10:end)'
+            attack = algorithm.(cell2mat(name));
+            if (~isempty(attack))
+                dir_attack = [dir_alg '/' attack.name];
+                mkdir(dir_attack);
+                display(dir_attack);
+                for attack_idx = 1:length(attack.attack_range)
+                    imwrite(attack.wm(attack_idx), [attack.parameter_name '_' attack.attacKL
+                end
+            end
+        end
+    end
+end
