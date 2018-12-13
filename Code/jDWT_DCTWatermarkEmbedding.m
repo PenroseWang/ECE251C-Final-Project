@@ -1,7 +1,7 @@
 function [watermarked_img, img_data] = jDWT_DCTWatermarkEmbedding(image, ...
     watermark, varargin)
 %%jDWT-DCTWatermarkEmbedding
-%Reference: "Combined DWT-DCT Digital Image Watermarking"
+%Reference: "Robust Digital Image Watermarking Based on Joint DWT-DCT"
 
 
 % 0. normalize variables to double
@@ -42,8 +42,10 @@ Blocks = {b_HL13_dct, b_LH13_dct, b_HL23_dct, b_LH23_dct};
 % 7. vectorize watermark
 wm_vec = watermark(:);
 % 8. generate PN sequence
-PN0 = PNGenerator([3, 1], 0);
-PN1 = PNGenerator([3, 2], 0);
+pn0 = PNGenerator([3, 1], 0);
+pn1 = PNGenerator([3, 2], 0);
+PN0 = circshift(pn0, 0).*circshift(pn1, 5);
+PN1 = circshift(pn0, 0).*circshift(pn1, 6);
 % 9. embed PN sequences
 alpha = cell2mat(varargin{1});
 num_b = numel(b_HL13_dct);

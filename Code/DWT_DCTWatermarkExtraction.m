@@ -32,7 +32,7 @@ for k = 1:prod(wm_size)
     mdc = tmp_dct(4:10);
     corr0 = max(cxcorr(mdc, double(PN0)));
     corr1 = max(cxcorr(mdc, double(PN1)));
-    if corr0 < corr1
+    if abs(corr0) < abs(corr1)
         rec_wm(k) = 1;
     end
     idx = idx + 1;

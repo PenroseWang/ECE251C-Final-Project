@@ -1,7 +1,7 @@
 function [extracted_watermark] = ...
     jDWT_DCTWatermarkExtraction(watermarked_img, img_data)
 %%jDWT-DCTWatermarkExtraction
-%Reference: "Combined DWT-DCT Digital Image Watermarking"
+%Reference: "Robust Digital Image Watermarking Based on Joint DWT-DCT"
 
 
 % 0. normalize variables to double
@@ -57,7 +57,7 @@ for idx = 1:prod(wm_size)
     mdc = tmp_dct(4:10);
     corr0 = max(cxcorr(mdc, double(PN0)));
     corr1 = max(cxcorr(mdc, double(PN1)));
-    if corr0 < corr1
+    if abs(corr0) < abs(corr1)
         rec_wm(idx) = 1;
     end
 end
