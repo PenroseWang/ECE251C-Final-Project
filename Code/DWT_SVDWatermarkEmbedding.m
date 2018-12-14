@@ -20,7 +20,7 @@ W2 = watermark - W1;
 W1 = padarray(W1, [h_HL - h_wm, w_HL - w_wm], 'post');
 W2 = padarray(W2, [h_HL - h_wm, w_HL - w_wm], 'post');   
 % modify sigular values
-alpha = cell2mat(varargin(1));
+alpha = cell2mat(varargin{1});
 [U1_W, S1_W, V1_W] = svd(S1 + alpha*W1);
 [U2_W, S2_W, V2_W] = svd(S2 + alpha*W2);
 % obtain modified DWT coefficients
